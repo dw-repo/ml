@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Nov 25 13:45:26 2016
+Fri Nov 25 13:45:26 2016
+Testing TRS with machine learning
 
-@author: Darbinyan
+@author: Darbinyan 
 """
 import pandas as pd
 import matplotlib.pyplot as plt
