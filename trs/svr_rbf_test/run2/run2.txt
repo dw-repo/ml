@@ -1,0 +1,58 @@
+features:
+cols = ['soi4','soi5','soi6','soi7','wp4','wp5','wp6','wp7','solar3','solar4','solar5','solar6','solar7',]
+result = 'IB_WMO'
+
+
+Script:
+
+
+df = pd.read_csv('C:\\Users\\Darbinyan.FSPL\\Documents\\MATLAB\\TRS_ML\\cyclone_number_upto2014.csv',header = 0)
+cols = ['soi4','soi5','soi6','soi7','wp4','wp5','wp6','wp7','solar3','solar4','solar5','solar6','solar7',]
+colscomp = ['soi5','soi6','soi7','wp5','wp6','wp7','solar5','solar6','solar7','IB_WMO']
+
+X = df.get(cols).values
+y = df.get(['IB_WMO']).values
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,
+    random_state=1)
+
+Citer = np.linspace(0.00001,20.001,40,endpoint=False)
+gamiter = np.linspace(0.0001,0.1001,50,endpoint=False)
+
+maetesting_train = []
+maetesting_test = [] 
+
+foldnm = 'C:\\Users\\Darbinyan.FSPL\\Documents\\pypersonal_packages\\ml\\trs\\svr_rbf_test\\run2\\'
+f=open(foldnm+'svr_test.csv', 'w')
+f.write(np.array2string(gamiter,max_line_width=600,precision=5,separator=',')+'\n')
+    
+for i in Citer:
+    maetesting_train = []
+    maetesting_test = []
+    f.write(np.array2string(i)+',')
+    for j in gamiter:
+        clf = svm.SVR(kernel = 'rbf', C=i, gamma = j)
+        clf.fit(X_train, y_train.squeeze())
+        y_train_pred = clf.predict(X_train)
+        y_test_pred = clf.predict(X_test)
+        
+        maetesting_train.append(mae(y_train, y_train_pred))
+        maetesting_test.append(mae(y_test, y_test_pred))
+        
+        f.write(str(mae(y_test, y_test_pred))+',')
+    
+    f.write('\n')    
+    
+    plt.figure(figsize=(10,8))
+    lin1=plt.plot(gamiter, maetesting_train)
+    lin2=plt.plot(gamiter, maetesting_test)
+    plt.xlabel('Gamma')
+    plt.ylabel('MAE')
+    plt.title('Testing SVR C='+np.array2string(i))
+    plt.legend(['Trainig set','Test set'])
+    plt.savefig(foldnm+'test_SVR_C_'+np.array2string(i,precision=2).replace('.','p'))
+    plt.close()
+
+f.close()    
+#----

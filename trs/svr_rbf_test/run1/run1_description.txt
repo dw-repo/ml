@@ -1,0 +1,4 @@
+features:
+'soi5','soi6','soi7','sst5','sst6','sst7','wp5','wp6','wp7','solar5','solar6','solar7'
+result:
+'IB_WMO'
