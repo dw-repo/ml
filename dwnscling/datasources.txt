@@ -1,0 +1,11 @@
+IOOS dataset catalog:
+https://data.ioos.us/
+IOOS sensor map:
+https://sensors.ioos.us/
+Japan marine Energy Web portal (Wave data)
+http://www.todaiww3.k.u-tokyo.ac.jp/nedo_p/en/webgis/
+Japan Meteorological Agency buoy data (wind but only up to year 2000):
+http://www.data.jma.go.jp/gmd/kaiyou/db/vessel_obs/data-report/html/buoy/buoy_NoS2_e.html
+Korean Hydrographic and Oceanographic Administration data fpor year 2010
+https://data.nodc.noaa.gov/cgi-bin/iso?id=gov.noaa.nodc:0078523
+
